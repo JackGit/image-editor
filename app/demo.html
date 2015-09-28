@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta name="apple-touch-fullscreen" content="YES">
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<meta name="viewport" 
+			content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
 		<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 
 		<title>ImageEditor Demo</title>
@@ -15,7 +14,7 @@
 				font-family: arial;
 			}
 			.center {
-				width: 400px;
+				width: 240px;
 				margin: auto;
 				padding: 20px;
 			}
@@ -29,6 +28,12 @@
 			}
 			.flex-1 {
 				flex: 1;
+			}
+			.flex-2 {
+				flex: 2;
+			}
+			.flex-3 {
+				flex: 3;
 			}
 			.flex-4 {
 				flex: 4;
@@ -57,8 +62,8 @@
 						'../public/images/pic-2.jpg',
 						'../public/images/background-1.png'
 					],
-					width: 400,
-					height: 300,
+					width: 240,
+					height: 180,
 					onAllImageLoaded: function() {
 						this.selectImage(0);
 					}
@@ -66,8 +71,12 @@
 			});
 
 			function confirmImage() {
-				var cvs = editor.mergeImage();
-				$('#outputs').append($(cvs));
+				var cvs = editor.mergeImage(),
+					$img = $('<img>');
+
+				$img.attr('src', cvs.toDataURL());
+				$('#outputs').append($img);
+				//$('#outputs').append($(cvs));
 			}
 
 		</script>
@@ -107,7 +116,7 @@
 			</div>
 			<div class='tool-control'>
 				<label class='flex-1'>ROTATE</label>
-				<input class='flex-4' 
+				<input class='flex-2' 
 					type='range' 
 					min='-180' 
 					max='180' 
@@ -116,7 +125,7 @@
 			</div>
 			<div class='tool-control'>
 				<label class='flex-1'>SCALE</label>
-				<input class='flex-4' 
+				<input class='flex-2' 
 					type='range'
 					id='scaleControl'
 					min='0.4'

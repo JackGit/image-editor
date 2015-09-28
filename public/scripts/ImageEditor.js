@@ -123,12 +123,15 @@
       },
 
       _start: function(e) {
+        var point = hasTouch ? e.originalEvent.touches[0] : e;
+
         this.readyToMove = true;
-        this.startPoint = {x: e.pageX, y: e.pageY};
+        this.startPoint = {x: point.pageX, y: point.pageY};
       },
 
       _move: function(e) {
-        var image = null,
+        var point = hasTouch ? e.originalEvent.touches[0] : e,
+            image = null,
             $img = null,
             dx, dy,
             top, left;
@@ -139,8 +142,8 @@
         image = this.activeImage;
         $img = $(image.img);
 
-        dx = e.pageX - this.startPoint.x;
-        dy = e.pageY - this.startPoint.y;
+        dx = point.pageX - this.startPoint.x;
+        dy = point.pageY - this.startPoint.y;
 
         top = image.centerPoint.y - image.height / 2 + dy;
         left = image.centerPoint.x - image.width / 2 + dx;
@@ -152,7 +155,8 @@
       },
 
       _end: function(e) {
-        var image = null,
+        var point = hasTouch ? e.originalEvent.touches[0] : e,
+            image = null,
             $img = null,
             dx, dy;
 
@@ -161,8 +165,8 @@
         image = this.activeImage;
         $img = $(image.img);
 
-        dx = e.pageX - this.startPoint.x;
-        dy = e.pageY - this.startPoint.y;
+        dx = point.pageX - this.startPoint.x;
+        dy = point.pageY - this.startPoint.y;
 
         image.centerPoint.x += dx;
         image.centerPoint.y += dy;
