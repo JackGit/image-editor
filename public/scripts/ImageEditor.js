@@ -98,10 +98,13 @@
 
         // center image in the editor
         if((containerWidth - newWidth) > (containerHeight - newHeight))
-          $img.css('left', left = ((containerWidth - newWidth) / 2));
+          left = (containerWidth - newWidth) / 2;
         else
-          $img.css('top', top = ((containerHeight - newHeight) / 2));
+          top = (containerHeight - newHeight) / 2;
           
+        $img.css('left', left);
+        $img.css('top', top);
+
         // store display image width and height
         image.width = newWidth;
         image.height = newHeight;
