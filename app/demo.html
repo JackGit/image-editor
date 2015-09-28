@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+
+		<title>ImageEditor Demo</title>
+
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				font-family: arial;
+			}
+			.center {
+				width: 400px;
+				margin: auto;
+				padding: 20px;
+			}
+			#editor {
+				margin-top: 20px;
+				border: 1px solid black;
+			}
+			.tool-control {
+				display: flex;
+				margin-top: 10px;
+			}
+			.flex-1 {
+				flex: 1;
+			}
+			.flex-4 {
+				flex: 4;
+			}
+			#frameList > li {
+				display: inline-block;
+			}
+			.pri-btn {
+				padding: 10px;
+				border-radius: 5px;
+				margin-right: 20px;
+			}
+			#outputs {
+				margin-top: 40px;
+				border-top: 1px dashed grey;
+			}
+		</style>
+
+		<script src='../public/scripts/jquery.js'></script>
+		<script src='../public/scripts/ImageEditor.js'></script>
+		<script>
+			var editor = null;
+			$(document).ready(function() {
+				editor = $('#editor').ImageEditor({
+					imageUrls: [
+						'../public/images/pic-1.jpg',
+						'../public/images/background-4.png'
+					],
+					width: 400,
+					height: 300,
+					onAllImageLoaded: function() {
+						this.selectImage(0);
+					}
+				});
+			});
+
+			function confirmImage() {
+				var cvs = editor.mergeImage();
+				$('#outputs').append($(cvs));
+			}
+		</script>
+	</head>
+
+	<body>
+		<div class='center'>
+			<h1>ImageEditor Demo</h1>
+			<div id='editor'></div>
+			<div class='tool-control'>
+				<input class='flex-4' type='text' placeholder='image url' />
+				<button class='flex-1' onclick='editor.'>Change Picture</button>
+			</div>
+			<div class='tool-control'>
+				<ul id='frameList'>
+					<li><img height='60' src='../public/images/background-1.png' /></li>
+					<li><img height='60' src='../public/images/background-2.png' /></li>
+					<li><img height='60' src='../public/images/background-3.png' /></li>
+					<li><img height='60' src='../public/images/background-4.png' /></li>
+				</ul>
+			</div>
+			<div class='tool-control'>
+				<label class='flex-1'>ROTATE</label>
+				<input class='flex-4' 
+					type='range' 
+					min='-180' 
+					max='180' 
+					id='rotateControl' 
+					oninput='editor.rotateImage(this.value);' />
+			</div>
+			<div class='tool-control'>
+				<label class='flex-1'>SCALE</label>
+				<input class='flex-4' 
+					type='range'
+					id='scaleControl'
+					min='0.4'
+					max='2.0'
+					step='0.05'
+					oninput='editor.scaleImage(this.value, this.value);' />
+			</div>
+			<div class='tool-control'>
+				<button class='pri-btn' onclick='confirmImage()'>Confirm</button>
+			</div>
+			<div id='outputs'>
+			</div>
+		</div>
+		
+	</body>
+</html>
