@@ -155,7 +155,7 @@
       },
 
       _end: function(e) {
-        var point = hasTouch ? e.originalEvent.touches[0] : e,
+        var point = hasTouch ? e.originalEvent.changedTouches[0] : e,
             image = null,
             $img = null,
             dx, dy;
@@ -170,7 +170,6 @@
 
         image.centerPoint.x += dx;
         image.centerPoint.y += dy;
-
       },
 
       _concatTransform: function(image) {
