@@ -199,7 +199,7 @@
 
       // public methods
       moveImage: function(x, y) {
-
+        // not implemented yet
       },
 
       rotateImage: function(deg) {
@@ -252,10 +252,10 @@
       },
 
       setImage: function(url, index) {
-       /* var image = this.images[index],
+       var image = this.images[index],
             $img = $(image.img);
 
-        $img.attr('src', url + '?v=' + new Date().getTime());*/
+        $img.attr('src', url + '?v=' + new Date().getTime());
       },
 
       removeImage: function(index) {

@@ -54,7 +54,7 @@
 			$(document).ready(function() {
 				editor = $('#editor').ImageEditor({
 					imageUrls: [
-						'../public/images/pic-1.jpg',
+						'../public/images/pic-2.jpg',
 						'../public/images/background-4.png'
 					],
 					width: 400,
@@ -69,6 +69,7 @@
 				var cvs = editor.mergeImage();
 				$('#outputs').append($(cvs));
 			}
+
 		</script>
 	</head>
 
@@ -77,15 +78,31 @@
 			<h1>ImageEditor Demo</h1>
 			<div id='editor'></div>
 			<div class='tool-control'>
-				<input class='flex-4' type='text' placeholder='image url' />
-				<button class='flex-1' onclick='editor.'>Change Picture</button>
+				<input class='flex-4' type='text' id='picUrl' placeholder='image url' />
+				<button class='flex-1' onclick='editor.setImage($("#picUrl").val(), 0)'>Change Picture</button>
 			</div>
 			<div class='tool-control'>
 				<ul id='frameList'>
-					<li><img height='60' src='../public/images/background-1.png' /></li>
-					<li><img height='60' src='../public/images/background-2.png' /></li>
-					<li><img height='60' src='../public/images/background-3.png' /></li>
-					<li><img height='60' src='../public/images/background-4.png' /></li>
+					<li>
+						<img height='60' 
+							src='../public/images/background-1.png' 
+							onclick='editor.setImage(this.src, 1);' />
+					</li>
+					<li>
+						<img height='60' 
+							src='../public/images/background-2.png'
+							onclick='editor.setImage(this.src, 1);' />
+					</li>
+					<li>
+						<img height='60' 
+							src='../public/images/background-3.png' 
+							onclick='editor.setImage(this.src, 1);' />
+					</li>
+					<li>
+						<img height='60' 
+							src='../public/images/background-4.png'
+							onclick='editor.setImage(this.src, 1);' />
+					</li>
 				</ul>
 			</div>
 			<div class='tool-control'>
