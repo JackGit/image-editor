@@ -8,8 +8,7 @@
     var hasTouch = 'ontouchstart' in window,
         startEvent = hasTouch ? 'touchstart' : 'mousedown',
         moveEvent = hasTouch ? 'touchmove' : 'mousemove',
-        endEvent = hasTouch ? 'touchend' : 'mouseup',
-        cancelEvent = hasTouch ? 'touchcancel' : 'mouseup';
+        endEvent = hasTouch ? 'touchend' : 'mouseup';
 
 
     /* ImageEditor */
@@ -27,7 +26,6 @@
 
       this.images = [];
       this.activeImage = null;
-      this.operations = {};
 
       this._init();
     }
@@ -35,27 +33,8 @@
     ImageEditor.prototype = {
       constructor: ImageEditor,
 
-      handleEvent: function(e) {
-        switch(e.type) {
-          case startEvent:
-            this._start(e);
-            break;
-          case moveEvent:
-            this._move(e)
-            break;
-          case endEvent:
-          case cancelEvent:
-            this._end(e);
-            break;
-          default:
-            break;
-        }
-      },
-
       // private methods
       _init: function() {
-        var that = this;
-
         // init container
         this.$el.css('position', 'relative');
         this.$el.css('height', this.options.height);
@@ -134,8 +113,8 @@
 
       _move: function(e) {
         var point = hasTouch ? e.originalEvent.touches[0] : e,
-            image = null,
-            $img = null,
+            image,
+            $img,
             dx, dy,
             top, left;
 
@@ -159,14 +138,12 @@
 
       _end: function(e) {
         var point = hasTouch ? e.originalEvent.changedTouches[0] : e,
-            image = null,
-            $img = null,
+            image,
             dx, dy;
 
         this.readyToMove = false;
 
         image = this.activeImage;
-        $img = $(image.img);
 
         dx = point.pageX - this.startPoint.x;
         dy = point.pageY - this.startPoint.y;
@@ -233,7 +210,7 @@
               width: 0, // origin width once placed into the container
               centerPoint: {x: 0, y: 0},
               scale: {x: 1, y: 1},
-              deg: 0,
+              deg: 0
             };
 
         this.images.push(image);
