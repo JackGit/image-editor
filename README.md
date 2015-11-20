@@ -4,26 +4,30 @@ ImageEditor is a jQuery plugin which can scale, rotate, move images, and merge i
 ### Usage
 ```js
 var options = {
-			imageUrls: [
-				'../public/images/pic-2.jpg', // the most bottom image
-				'../public/images/background-1.png' // the most top image
-			],
-			width: 240, // default value: 400 (px)
-			height: 180, // default value: 400 (px)
-			onAllImageLoaded: function() { // callback of all image loaded
-			  this.selectImage(0);
-			}
-		},
-    editor = $('#editor').ImageEditor(options); // init a DIV as ImageEditor
+	imageUrls: [
+		{url: '../public/images/pic-2.jpg', closeButtonRequire: false},
+		{url: '../public/images/background-1.png', closeButtonRequire: false, clickToSelect: false, onClick: function() { editor.selectImage(0);}},
+		'../public/images/mustache.png'
+	],
+	width: 300,
+	height: 300,
+	onInitCompleted: function() {
+		editor.selectImage(0); // select most bottom image as current operating image
+	}
+},
+editor = $('#editor').ImageEditor(options); // init a DIV as ImageEditor
 ```
 
 ### Public methods
 ```js
-editor.addImage(imageUrl); // add an image to the top
-editor.selectImage(1); // select an image which index is 1. (Index of bottom is 0)
-editor.setImage(imageUrl, index); // replace image to the target index
-editor.rotateImage(30); // rotate image to 30 deg
-editor.scaleImage(1.5, 1.5); // scale image width and height to 1.5 and 1.5
+editor.moveImage(deltaX, deltaY); // move image to delta x, y
+editor.rotateImage(90); // rotate image 90 deg
+editor.scaleImage(1.5); // scale as 1.5 size (for both width and height)
+editor.addImage(urlObj, true); // add image, and make it as current selected image for operation. structure of urlObj refers to options imageUrls array element
+editor.setImage(urlObj, 1, false); // if index = 1 image exists, replace it, and not make replaced image as current selected image
+editor.removeImage(2); // remove index = 2 image
+editor.removeAll(); // remove all images
+editor.reset(); // reset as initial status after ImageEditor created
 editor.mergeImage(); // merge all images together, returns a canvas DOM
 ```
 
