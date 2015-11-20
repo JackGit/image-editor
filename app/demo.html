@@ -53,6 +53,7 @@
 		</style>
 
 		<script src='../public/scripts/jquery.js'></script>
+		<script src="../public/scripts/hammer.min.js"></script>
 		<script src='../public/scripts/ImageEditor.js'></script>
 		<script>
 			var editor = null;
@@ -60,12 +61,14 @@
 				editor = $('#editor').ImageEditor({
 					imageUrls: [
 						'../public/images/pic-2.jpg',
-						'../public/images/background-1.png'
+						'../public/images/background-1.png',
+						'../public/images/mustache.png'
 					],
-					width: 240,
-					height: 180,
-					onAllImageLoaded: function() {
-						this.selectImage(0);
+					removeIcon: '../public/images/delete.png',
+					width: 400,
+					height: 300,
+					onInitCompleted: function() {
+						editor.selectImage(2); // 初始化完成后，默认选中第一个图片（头像图片）作为当前编辑图片
 					}
 				});
 			});
@@ -74,7 +77,7 @@
 				var cvs = editor.mergeImage(),
 					$img = $('<img>');
 
-				//$img.attr('src', cvs.toDataURL());
+				$img.attr('src', cvs.toDataURL());
 				//$('#outputs').append($img);
 				$('#outputs').append($(cvs));
 			}
@@ -84,7 +87,7 @@
 
 	<body>
 		<div class='center'>
-			<h1>ImageEditor Demo</h1>
+			<h1 id="title">ImageEditor Demo</h1>
 			<div id='editor'></div>
 			<div class='tool-control'>
 				<input class='flex-4' type='text' id='picUrl' placeholder='image url' />
@@ -128,7 +131,7 @@
 				<input class='flex-2' 
 					type='range'
 					id='scaleControl'
-					min='0.4'
+					min='0.1'
 					max='2.0'
 					step='0.05'
 					oninput='editor.scaleImage(this.value, this.value);' />
@@ -139,6 +142,6 @@
 			<div id='outputs'>
 			</div>
 		</div>
-		
+
 	</body>
 </html>
