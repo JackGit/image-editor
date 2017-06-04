@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta name="viewport" 
+		<meta name="viewport"
 			content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
 		<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 
@@ -52,23 +52,23 @@
 			}
 		</style>
 
-		<script src='../public/scripts/jquery.js'></script>
-		<script src="../public/scripts/hammer.min.js"></script>
-		<script src='../public/scripts/ImageEditor.js'></script>
+		<script src='assets/js/jquery.js'></script>
+		<script src="assets/js/hammer.min.js"></script>
+		<script src='assets/js/ImageEditor.js'></script>
 		<script>
 			var editor = null;
 			$(document).ready(function() {
 				editor = $('#editor').ImageEditor({
 					imageUrls: [
-						'../public/images/pic-2.jpg',
-						'../public/images/background-1.png',
-						'../public/images/mustache.png'
+						'assets/images/pic-2.jpg',
+						'assets/images/background-1.png',
+						'assets/images/mustache.png'
 					],
-					removeIcon: '../public/images/delete.png',
+					removeIcon: 'assets/images/delete.png',
 					width: 400,
 					height: 300,
 					onInitCompleted: function() {
-						editor.selectImage(2); // 初始化完成后，默认选中第一个图片（头像图片）作为当前编辑图片
+						editor.selectImage(2);
 					}
 				});
 			});
@@ -96,39 +96,39 @@
 			<div class='tool-control'>
 				<ul id='frameList'>
 					<li>
-						<img height='60' 
-							src='../public/images/background-1.png' 
+						<img height='60'
+							src='assets/images/background-1.png'
 							onclick='editor.setImage(this.src, 1);' />
 					</li>
 					<li>
-						<img height='60' 
-							src='../public/images/background-2.png'
+						<img height='60'
+							src='assets/images/background-2.png'
 							onclick='editor.setImage(this.src, 1);' />
 					</li>
 					<li>
-						<img height='60' 
-							src='../public/images/background-3.png' 
+						<img height='60'
+							src='assets/images/background-3.png'
 							onclick='editor.setImage(this.src, 1);' />
 					</li>
 					<li>
-						<img height='60' 
-							src='../public/images/background-4.png'
+						<img height='60'
+							src='assets/images/background-4.png'
 							onclick='editor.setImage(this.src, 1);' />
 					</li>
 				</ul>
 			</div>
 			<div class='tool-control'>
 				<label class='flex-1'>ROTATE</label>
-				<input class='flex-2' 
-					type='range' 
-					min='-180' 
-					max='180' 
-					id='rotateControl' 
+				<input class='flex-2'
+					type='range'
+					min='-180'
+					max='180'
+					id='rotateControl'
 					oninput='editor.rotateImage(this.value);' />
 			</div>
 			<div class='tool-control'>
 				<label class='flex-1'>SCALE</label>
-				<input class='flex-2' 
+				<input class='flex-2'
 					type='range'
 					id='scaleControl'
 					min='0.1'

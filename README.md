@@ -6,9 +6,9 @@ And now it supports multi touch in mobile phones, thanks to Hammer.js
 ```js
 var options = {
 	imageUrls: [
-		{url: '../public/images/pic-2.jpg', closeButtonRequire: false},
-		{url: '../public/images/background-1.png', closeButtonRequire: false, clickToSelect: false, onClick: function() { editor.selectImage(0);}},
-		'../public/images/mustache.png'
+		{url: 'assets/images/pic-2.jpg', closeButtonRequire: false},
+		{url: 'assets/images/background-1.png', closeButtonRequire: false, clickToSelect: false, onClick: function() { editor.selectImage(0);}},
+		'assets/images/mustache.png'
 	],
 	width: 300,
 	height: 300,
@@ -33,4 +33,4 @@ editor.mergeImage(); // merge all images together, returns a canvas DOM
 ```
 
 ### Demo
-http://demo.jackyang.me/image-editor/app/demo.html
+https://jackgit.github.io/image-editor/index.html
