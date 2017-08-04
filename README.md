@@ -33,4 +33,4 @@ editor.mergeImage(); // merge all images together, returns a canvas DOM
 ```
 
 ### Demo
-https://jackgit.github.io/image-editor/index.html
+http://jackgit.github.io/image-editor/index.html
