@@ -176,7 +176,7 @@
               'translate(' + transform.translate.x + 'px, ' + transform.translate.y + 'px)',
               'scale(' + transform.scale + ', ' + transform.scale + ')',
               'rotate('+ transform.rotation + 'deg)',
-              'rotateY('+ transform.flip + 'deg')'
+              'rotateY('+ transform.flip + 'deg)'
             ].join(''),
             removeIconValue = 'scale(' + 1 / transform.scale + ', ' + 1 / transform.scale + ')';
 
@@ -329,7 +329,7 @@
         var image = this.activeImage;
         image.transform.flip = value;
         this._updateImageTransform(image);
-      }
+      },
 
       addImage: function(url, select) {
         url = this._preProcessImageUrl(url);
