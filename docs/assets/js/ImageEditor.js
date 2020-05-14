@@ -175,7 +175,8 @@
             value = [
               'translate(' + transform.translate.x + 'px, ' + transform.translate.y + 'px)',
               'scale(' + transform.scale + ', ' + transform.scale + ')',
-              'rotate('+ transform.rotation + 'deg)'
+              'rotate('+ transform.rotation + 'deg)',
+              'rotateY('+ transform.flip + 'deg)'
             ].join(''),
             removeIconValue = 'scale(' + 1 / transform.scale + ', ' + 1 / transform.scale + ')';
 
@@ -258,6 +259,11 @@
         // perform rotate
         ctx.translate(image.centerPoint.x, image.centerPoint.y);
         ctx.rotate(transform.rotation * Math.PI / 180);
+        //perform flip if needed
+        if (transform.flip == 180)
+        {
+            ctx.scale(-1,1);
+        }
         ctx.translate(-image.centerPoint.x, -image.centerPoint.y);
 
         // perform scale
@@ -318,6 +324,12 @@
         image.transform.scale = scale;
         this._updateImageTransform(image);
       },
+      
+      flipImage: function(value) {
+        var image = this.activeImage;
+        image.transform.flip = value;
+        this._updateImageTransform(image);
+      },
 
       addImage: function(url, select) {
         url = this._preProcessImageUrl(url);
@@ -342,7 +354,8 @@
               transform: {
                 translate: {x: 0, y: 0},
                 rotation: 0,
-                scale: 1
+                scale: 1,
+                flip: 0
               }
             };
 
@@ -404,7 +417,8 @@
             transform: {
               translate: {x: 0, y: 0},
               rotation: 0,
-              scale: 1
+              scale: 1,
+              flip: 0
             }
           };
 

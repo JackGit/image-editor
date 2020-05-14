@@ -138,6 +138,17 @@
 					oninput='editor.scaleImage(this.value, this.value);' />
 			</div>
 			<div class='tool-control'>
+				<label class='flex-1'>FLIP</label>
+				<input class='flex-2'
+					type='range'
+					min='0'
+					max='180'
+					step='180'
+					id='flipControl'
+					value='0'
+					oninput='editor.flipImage(this.value);' />
+			</div>
+			<div class='tool-control'>
 				<button class='pri-btn' onclick='confirmImage()'>Confirm</button>
 			</div>
 			<div id='outputs'>
